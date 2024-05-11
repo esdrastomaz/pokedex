@@ -6,6 +6,7 @@ const input = document.querySelector('.input__search');
 const buttonPrev = document.querySelector('.btn-prev');
 const buttonNext = document.querySelector('.btn-next');
 
+
 let searchPokemon = 1;
 
 const fetchPokemon = async (pokemon) =>{
@@ -28,7 +29,11 @@ const renderPokemon = async (pokemon) =>{
         pokemonName.innerHTML = data.name;
         pokemonNumber.innerHTML = data.id;
         pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']
-        ['animated']['front_default'];    
+        ['animated']['front_default'];
+        // Reproduzir o áudio do Pokémon
+        const audioUrl = data['cries']['latest'];
+        const audioElement = new Audio(audioUrl);
+        audioElement.play();    
         input.value = '';
         searchPokemon = data.id;
     }else{
@@ -58,4 +63,6 @@ buttonNext.addEventListener('click', (event)=>{
     renderPokemon(searchPokemon);
 
 });
+
 renderPokemon(searchPokemon);
+ 
